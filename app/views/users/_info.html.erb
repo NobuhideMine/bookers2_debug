@@ -21,9 +21,9 @@
 　
 <div class='row'>
     <% if current_user != user %>
-      <td><%= render "relationships/btn", user: user, options: { class: ""} %></td>
+      <td><%= render "relationships/btn", user: user %></td>
     <% else %>
-      <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
+      <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
     <% end %>

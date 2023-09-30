@@ -10,10 +10,16 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy 
   has_many :book_comments, dependent: :destroy
   
-  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :following_users, through: :active_relationships, source: :followed
-  has_many :follower_users, through: :passive_relationships, source: :follower
+  #フォローされる
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  #自分をフォローしている人
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+   
+  #フォローする
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  #自分がフォローしている人
+  has_many :followings, through: :relationships, source: :followed
+ 
   
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
@@ -23,12 +29,12 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
   
-  def follow(user_id)
-        active_relationships.create(followed_id: user_id) #フォローしたとき
+  def follow(user)
+        relationships.create(followed_id: user.id) #フォローしたとき
   end
     
-  def unfollow(user_id)
-        active_relationships.find_by(followed_id: user_id).destroy #フォローを外したとき
+  def unfollow(user)
+        relationships.find_by(followed_id: user.id).destroy #フォローを外したとき
   end
     
   def following?(user)

@@ -4,7 +4,7 @@ class RelationshipsController < ApplicationController
    def create
       user = User.find(params[:user_id])
       current_user.follow(user)
-      redirect_to request.referer
+      redirect_to request.referer #遷移元のURLを取得してリダイレクトする
    end
    
    def destroy
@@ -20,6 +20,6 @@ class RelationshipsController < ApplicationController
   
    def followers
       user = User.find(params[:user_id])
-      @user = user.followers
+      @users = user.followers
    end
 end
