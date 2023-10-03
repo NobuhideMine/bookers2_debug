@@ -19,7 +19,7 @@
         <td><%= book.body %></td>
         
         <!--いいね機能ajax-partial -->
-        <td class =<%= "favorite-" + book.id.to_s %> >
+        <td class = <%= "favorite-" + book.id.to_s %> >
           <%= render "favorites/btn", book: book %>
         </td>
         
