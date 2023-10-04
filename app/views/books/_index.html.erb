@@ -24,6 +24,10 @@
         </td>
         
         <td><%= render "book_comments/counter", book: book %></td>
+        
+        <td><%= render 'form', book: book %></td>
+        <td><%= render "books/static_rate", book: book %></td>
+        
       </tr>
     <% end %>
   </tbody>
