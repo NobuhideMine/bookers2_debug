@@ -21,6 +21,13 @@
         <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
         <td><%= book.body %></td>
         
+        <!--タグリスト-->
+          <!--<@tag_list.each do |list|%>-->
+          <td><i class="fa-sharp fa-solid fa-tag"></i></td>
+          <td><%=link_to tag_list,search_tag_path(book_tag_id: book.id) %></td>
+          <td><%="(#{tag_list.post_books.count})" %></td>
+          <!--< end %>-->
+        
         <!--いいね機能ajax-partial -->
         <td class = <%= "favorite-" + book.id.to_s %> >
           <%= render "favorites/btn", book: book %>
