@@ -1,5 +1,4 @@
-
-    <div id="star_<%= book.id %>"></div>
+<div id="star_<%= book.id %>"></div>
 <script>
 $(document).on('turbolinks:load', function() {
   let elem = document.querySelector('#star_<%= book.id %>');
@@ -15,5 +14,4 @@ $(document).on('turbolinks:load', function() {
   };
   raty(elem, opt);
 });
-</script>
 </script>

@@ -7,6 +7,7 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+  
   <% if book.id.nil? %>
     <div class="form-group" id="star">
       <%= f.label :star %>
@@ -26,7 +27,6 @@
           scoreName: 'book[star]',
         };
         raty(elem, opt);
-        
       });
     </script>
      <% else %>
