@@ -24,4 +24,6 @@ class Book < ApplicationRecord
     end
   end
   
+  scope :latest, -> {order(created_at: :desc)}  #新しいもの順
+  scope :star_count, -> {order(star: :desc)} #星の数が多い順
 end
