@@ -4,17 +4,16 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
+      <th>Tag</th>
       <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
-     <%= link_to '新しい順', books_path(latest: "true") %>
-    |<%= link_to '評価の高い順', books_path(star_count: "true") %>
+     
     <% books.each do |book| %>
-   
       <tr>
         <td>
-          <%= link_to (book.user) do %>
+          <%= link_to book.user do %>
               <%= image_tag book.user.get_profile_image, size:'50x50' %>
           <% end %>
         </td>
@@ -22,12 +21,11 @@
         <td><%= book.body %></td>
         
         <!--タグリスト-->
-          <!--<@tag_list.each do |list|%>-->
-          <td><i class="fa-sharp fa-solid fa-tag"></i></td>
-          <td><%=link_to tag_list,search_tag_path(book_tag_id: book.id) %></td>
-          <td><%="(#{tag_list.post_books.count})" %></td>
-          <!--< end %>-->
-        
+        <td>
+          <% book.tags.each do |tag| %>
+            <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
+          <% end %>
+        </td>
         <!--いいね機能ajax-partial -->
         <td class = <%= "favorite-" + book.id.to_s %> >
           <%= render "favorites/btn", book: book %>

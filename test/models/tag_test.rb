@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PostBookTagTest < ActiveSupport::TestCase
+class TagTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

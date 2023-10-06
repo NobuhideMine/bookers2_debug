@@ -9,7 +9,8 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <%= render 'index', books: @books, tag_list: @tag_list %>
+      <%= link_to '新しい順', books_path(sort: 'created_at DESC') %> | <%= link_to '評価の高い順', books_path(sort: "star DESC") %>
+      <%= render 'index', books: @books %>
     </div>
   </div>
 </div>

@@ -17,11 +17,14 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
+          
           <!-- タグリスト -->
-          <td><% @post_book_tags.each do |tag| %></td>
-          <td><i class="fa-sharp fa-solid fa-tag"></i></td>
-          <td><%= link_to tag.name,search_tag_path(book_tag_id: tag.id) %></td>
-          <td><% end %></td>
+          <td>
+            <% @book.tags.each do |tag| %>
+              <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
+            <% end %>
+          </td>  
+          
           <!--いいね機能-->
           <td class = "favorite-" + @book.id.to_s %>  
             <%= render "favorites/btn", book: @book %>
